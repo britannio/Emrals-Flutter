@@ -121,25 +121,29 @@ class _MyAppState extends State<MapPage> {
     return Marker(
       markerId: MarkerId(report.id.toString()),
       position: LatLng(report.latitude, report.longitude),
-      consumeTapEvents: true,
+      consumeTapEvents: false,
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (ctx) => ReportDetail(
-                  report: report,
-                  reports: reports,
-                  showSnackbar: (String message) {
-                    Scaffold.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(message),
+      onTap: !singleReport
+          ? () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => ReportDetail(
+                        report: report,
+                        reports: reports,
+                        showSnackbar: (String message) {
+                          Scaffold.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(message),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
                 ),
-          ),
-        );
-      },
+              );
+            }
+          : null,
+      infoWindow:
+          InfoWindow(title: report.title, snippet: 'Report #${report.id}'),
     );
   }
 }
