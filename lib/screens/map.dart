@@ -122,7 +122,7 @@ class _MyAppState extends State<MapPage> {
       markerId: MarkerId(report.id.toString()),
       position: LatLng(report.latitude, report.longitude),
       consumeTapEvents: false,
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+      icon: BitmapDescriptor.defaultMarkerWithHue(singleReport ? BitmapDescriptor.hueGreen : BitmapDescriptor.hueRed),
       onTap: !singleReport
           ? () {
               Navigator.of(context).push(
