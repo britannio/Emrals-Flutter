@@ -82,10 +82,7 @@ class _MyAppState extends State<MapPage> {
     if (center != null) {
       await mapController.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLng(0, 0),
-            zoom: 15.0,
-          ),
+          CameraPosition(target: center, zoom: 15.0),
         ),
       );
     }
